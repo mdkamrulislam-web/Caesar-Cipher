@@ -1,4 +1,31 @@
 import alphabets as alpha
+def cipher(mode, text, shift):
+    index = 0
+    temp_str = ""
+    temp_index = 0
+    for i in text:
+        for j in alpha.alphabet:
+            if(i == j):
+                index = alpha.alphabet.index(j)
+                if(mode == "encode"):
+                    if((index + shift) > 25):
+                        temp_index = (index + shift) - 26
+                        temp_str += alpha.alphabet[temp_index]
+                    else:
+                        temp_str += alpha.alphabet[index + shift]
+                if(mode == "decode"):
+                    if((index - shift) < 0):
+                        temp_index = (index - shift) + 26
+                        temp_str += alpha.alphabet[temp_index]
+                    else:
+                        temp_str += alpha.alphabet[index - shift]
+                break
+    if(mode == "encode"):
+        print(f"Your Encoded Message is: {temp_str}")
+    else:
+        print(f"Your Decoded Message is: {temp_str}")
+                    
+'''
 def encrypt(t, s):
     index = 0
     encrypted_str = ""
@@ -36,3 +63,4 @@ def encodeOrDecode(mode, text, shift):
         encrypt(t = text, s = shift)
     elif(mode == "decode"):
         decrypt(t = text, s = shift)
+'''
